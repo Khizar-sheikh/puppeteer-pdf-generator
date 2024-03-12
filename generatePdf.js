@@ -31,8 +31,20 @@ async function generatePDF() {
       { month: "January", date: "2024-01-15", amount: "$500", type: "Type A" },
       { month: "February", date: "2024-02-15", amount: "$500", type: "Type B" },
       { month: "March", date: "2024-03-15", amount: "$500", type: "Type C" },
+      { month: "January", date: "2024-01-15", amount: "$500", type: "Type A" },
+      { month: "February", date: "2024-02-15", amount: "$500", type: "Type B" },
+      { month: "March", date: "2024-03-15", amount: "$500", type: "Type C" },
+      { month: "January", date: "2024-01-15", amount: "$500", type: "Type A" },
+      { month: "February", date: "2024-02-15", amount: "$500", type: "Type B" },
+      { month: "March", date: "2024-03-15", amount: "$500", type: "Type C" },
+      { month: "January", date: "2024-01-15", amount: "$500", type: "Type A" },
+      { month: "February", date: "2024-02-15", amount: "$500", type: "Type B" },
+      { month: "March", date: "2024-03-15", amount: "$500", type: "Type C" },
+      { month: "January", date: "2024-01-15", amount: "$500", type: "Type A" },
+      { month: "February", date: "2024-02-15", amount: "$500", type: "Type B" },
+      { month: "March", date: "2024-03-15", amount: "$500", type: "Type C" },
     ];
-    // Define custom labels for user info
+
     const userInfoLabels = {
       firstName: "First Name",
       lastName: "Last Name",
@@ -43,7 +55,6 @@ async function generatePDF() {
       CNIC: "CNIC",
     };
 
-    // Define custom labels for deal info
     const dealInfoLabels = {
       productType: "Product Type",
       measuringUnit: "Measuring Unit",
@@ -114,8 +125,8 @@ async function generatePDF() {
       }
       
       .container {
-          max-width: 600px;
-          margin: auto;
+        max-width: 750px;
+        margin: auto;
           -webkit-print-color-adjust: exact;
           background: #f4f4f4;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -237,7 +248,9 @@ async function generatePDF() {
               display: block;
               white-space: nowrap;
           }
-      
+          thead {
+            display: table-header-group;
+        }
           th,
           td {
               min-width: 120px;
@@ -278,7 +291,14 @@ async function generatePDF() {
     `);
 
     // Generate PDF
-    await page.pdf({ path: "email_template.pdf", format: "A4" });
+    await page.pdf({
+      path: "Deal_Details.pdf",
+      format: "A4",
+      printBackground: true,
+      displayHeaderFooter: true,
+      headerTemplate: "",
+      footerTemplate: "",
+    });
 
     // Close the browser
     await browser.close();
