@@ -16,7 +16,7 @@ async function generatePDF() {
     };
 
     const dealInfo = {
-      productType: "Product",
+      productType: "Appartment",
       measuringUnit: "Unit",
       unitPrice: "PKR 13,000",
       totalPrice: "PKR 1,300,000",
@@ -32,20 +32,44 @@ async function generatePDF() {
       { month: "February", date: "2024-02-15", amount: "$500", type: "Type B" },
       { month: "March", date: "2024-03-15", amount: "$500", type: "Type C" },
     ];
+    // Define custom labels for user info
+    const userInfoLabels = {
+      firstName: "First Name",
+      lastName: "Last Name",
+      relationName: "Relation Name",
+      relation: "Relation",
+      email: "Email",
+      phone: "Phone",
+      CNIC: "CNIC",
+    };
 
+    // Define custom labels for deal info
+    const dealInfoLabels = {
+      productType: "Product Type",
+      measuringUnit: "Measuring Unit",
+      unitPrice: "Unit Price",
+      totalPrice: "Total Price",
+      discountPercentage: "Discount Percentage",
+      dealType: "Deal Type",
+      duration: "Duration",
+      rentPercentage: "Rent Percentage",
+      createdAt: "Booked At",
+    };
     // Populate user info
-    let userInfoHTML = `<div class="info">`;
-    Object.entries(userInfo).forEach(([key, value]) => {
-      userInfoHTML += `<p class="key" ><strong>${key}: </strong>${value}</p>`;
+    let userInfoHTML = "";
+    userInfoHTML += '<div class="info">';
+    Object.keys(userInfo).forEach((key) => {
+      userInfoHTML += `<p><strong>${userInfoLabels[key]}:</strong> ${userInfo[key]}</p>`;
     });
-    userInfoHTML += `</div>`;
+    userInfoHTML += "</div>";
 
     // Populate deal info
-    let dealInfoHTML = `<div class="info">`;
-    Object.entries(dealInfo).forEach(([key, value]) => {
-      dealInfoHTML += `<p class="key" ><strong>${key}: </strong>${value}</p>`;
+    let dealInfoHTML = "";
+    dealInfoHTML += '<div class="info">';
+    Object.keys(dealInfo).forEach((key) => {
+      dealInfoHTML += `<p><strong>${dealInfoLabels[key]}:</strong> ${dealInfo[key]}</p>`;
     });
-    dealInfoHTML += `</div>`;
+    dealInfoHTML += "</div>";
 
     // Populate installment info
     let installmentTableHTML = `<table id="installmentTable">
@@ -228,12 +252,15 @@ async function generatePDF() {
           </div>
   
           <div class="section">
-            <h2>User Information</h2>
+            <h2>${userInfo.firstName} ${userInfo.lastName} </h2>
             <div id="userInfo">${userInfoHTML}</div>
           </div>
   
           <div class="section">
-            <h2>Deal Information</h2>
+          <h2>
+          ${dealInfo.productType}|${dealInfo.totalPrice}
+    
+        </h2>
             <div id="dealInfo">${dealInfoHTML}</div>
           </div>
   
