@@ -6,7 +6,7 @@ async function generatePDF() {
     const page = await browser.newPage();
 
     const userInfo = {
-      firstName: "John",
+      firstName: "Jane",
       lastName: "Doe",
       relationName: "Jane Doe",
       relation: "Father",
@@ -40,9 +40,7 @@ async function generatePDF() {
       { month: "January", date: "2024-01-15", amount: "$500", type: "Type A" },
       { month: "February", date: "2024-02-15", amount: "$500", type: "Type B" },
       { month: "March", date: "2024-03-15", amount: "$500", type: "Type C" },
-      { month: "January", date: "2024-01-15", amount: "$500", type: "Type A" },
-      { month: "February", date: "2024-02-15", amount: "$500", type: "Type B" },
-      { month: "March", date: "2024-03-15", amount: "$500", type: "Type C" },
+      // Add more installment data as needed
     ];
 
     const userInfoLabels = {
@@ -66,6 +64,7 @@ async function generatePDF() {
       rentPercentage: "Rent Percentage",
       createdAt: "Booked At",
     };
+
     // Populate user info
     let userInfoHTML = "";
     userInfoHTML += '<div class="info">';
@@ -112,156 +111,123 @@ async function generatePDF() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Email Template</title>
         <style>
-       
-        body {
-          font-family: Arial, sans-serif;
-          line-height: 1.6;
-          margin: 0;
-          padding: 0;
-      }
-      
-      .key {
-          text-transform: capitalize;
-      }
-      
-      .container {
-        max-width: 750px;
-        margin: auto;
-          -webkit-print-color-adjust: exact;
-          background: #f4f4f4;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-      }
-      
-      .header {
-        text-align: center;
-        -webkit-print-color-adjust: exact;
-        background-color: #0e1a4e;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        justify-content: center;
-        height: 60px;
-        margin-bottom: 10px;
-    }
-      
-      img {
-          width: 35px;
-          height: 35px;
-          border-radius: 50%;
-          border: 3px solid #ffffff;
-          -webkit-print-color-adjust: exact;
-          background-color: #f4f4f4;
-      }
-      
-      .section {
-          padding: 20px;
-          margin-bottom: 20px;
-          border-radius: 5px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          background-color: #ffffff;
-      }
-      
-      h2 {
-          color: #0e1a4e;
-          font-size: 24px;
-          margin-bottom: 10px;
-          text-align: center;
-      }
-      
-      .info {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          margin-bottom: 20px;
-          padding: 10px;
-          border-radius: 5px;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-          -webkit-print-color-adjust: exact;
-          background-color: #f9f9f9;
-          color: #333;
-          font-size: 14px;
-      }
-      
-      .info p {
-          margin: 5px 0;
-      }
-      
-      .info strong {
-          color: #0e1a4e;
-          font-weight: bold;
-      }
-      
-      table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-bottom: 20px;
-          overflow-x: auto;
-      }
-      
-      th,
-      td {
-          padding: 10px;
-          text-align: left;
-          border-bottom: 1px solid #dddddd;
-      }
-      
-      th {
-        -webkit-print-color-adjust: exact;
-          background-color: #0e1a4e;
-          color: #ffffff;
-          font-size: 18px;
-      }
-      
-      td {
-          font-size: 16px;
-      }
-      
-      .closing {
-        -webkit-print-color-adjust: exact;
-          background-color: #0e1a4e;
-          color: #ffffff;
-          padding: 20px;
-          text-align: center;
-          border-radius: 0 0 5px 5px;
-      }
-      
-      .closing p {
-          margin: 0;
-      }
-      
-      @media (max-width: 600px) {
+          body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+          }
+          
+          .container {
+            max-width: 800px;
+            -webkit-print-color-adjust: exact;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+           margin-bottom: 50px;
+          }
+          
+          .header {
+            text-align: center;
+            padding: 10px;
+            margin-bottom : 10px;
+            background-color: #0e1a4e;
+          }
+          
+          .header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+          }
+          
           .section {
-              display: flex;
-              flex-direction: row;
-              flex-wrap: wrap;
+            padding: 20px;
+            background-color: #ffffff;
+            margin-left: 20px;
+            margin-right : 20px;
           }
-      
-          .section>* {
-              flex: 0 0 100%;
+          
+          h2 {
+            color: #0e1a4e;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
           }
-      
+          
           .info {
-              grid-template-columns: repeat(1, 1fr);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 14px;
           }
-      
+          .info p {
+            margin: 5px 0;
+          }
+          
+          .info strong {
+            color: #0e1a4e;
+            font-weight: bold;
+          }
+          
           table {
-              display: block;
-              white-space: nowrap;
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            overflow-x: auto;
           }
-          thead {
-            display: table-header-group;
-        }
+          
           th,
           td {
-              min-width: 120px;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
           }
-      }      
+          
+          th {
+            background-color: #0e1a4e;
+            color: #ffffff;
+            font-size: 18px;
+          }
+          
+          td {
+            font-size: 16px;
+          }
+          
+          .closing {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #0e1a4e;
+            color: #ffffff;
+            padding: 7px;
+            text-align: center;
+          }   
+          @media (max-width: 600px) {
+            .section {
+              display: flex;
+              flex-direction: column;
+            }
+          
+            .info {
+              grid-template-columns: repeat(1, 1fr);
+            }
+          
+            th,
+            td {
+              min-width: auto;
+            }
+          }
         </style>
       </head>
       <body>
         <div class="container">
           <div class="header">
-            <img src="https://www.google.com/imgres?q=logo%20for%20property%20business%20in%20round%20shape%20with%20white%20bg&imgurl=https%3A%2F%2Fc8.alamy.com%2Fcomp%2F2BNB6E6%2Fround-shape-home-rent-search-app-logo-real-estate-agency-house-logotype-black-and-white-building-and-magnifying-glass-icon-architecture-element-2BNB6E6.jpg&imgrefurl=https%3A%2F%2Fwww.alamy.com%2Fround-shape-home-rent-search-app-logo-real-estate-agency-house-logotype-black-and-white-building-and-magnifying-glass-icon-architecture-element-image357361710.html&docid=4tV9Pcy_hljUDM&tbnid=rE-EuvQXDsTTJM&vet=12ahUKEwjosIzY1u2EAxUMV6QEHV6gC-QQM3oECHcQAA..i&w=1300&h=1390&hcb=2&ved=2ahUKEwjosIzY1u2EAxUMV6QEHV6gC-QQM3oECHcQAAnode " alt="Logo">
+            <img src="https://via.placeholder.com/150" alt="Logo">
           </div>
   
           <div class="section">
@@ -270,10 +236,7 @@ async function generatePDF() {
           </div>
   
           <div class="section">
-          <h2>
-          ${dealInfo.productType}|${dealInfo.totalPrice}
-    
-        </h2>
+            <h2>${dealInfo.productType} | ${dealInfo.totalPrice}</h2>
             <div id="dealInfo">${dealInfoHTML}</div>
           </div>
   
@@ -292,12 +255,16 @@ async function generatePDF() {
 
     // Generate PDF
     await page.pdf({
-      path: "Deal_Details.pdf",
+      path: `${userInfo.firstName}.pdf`,
       format: "A4",
       printBackground: true,
       displayHeaderFooter: true,
-      headerTemplate: "",
-      footerTemplate: "",
+      margin: {
+        top: "0px",
+        bottom: "0px",
+        left: "0px",
+        right: "0px",
+      },
     });
 
     // Close the browser
