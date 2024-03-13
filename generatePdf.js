@@ -127,6 +127,9 @@ async function generatePDF() {
           }
           
           .header {
+            position  : fixed ;
+            top : 0 ;
+            width : 100% ;
             text-align: center;
             padding: 10px;
             margin-bottom : 10px;
@@ -207,6 +210,11 @@ async function generatePDF() {
             padding: 7px;
             text-align: center;
           }   
+          .content{
+            margin-top : 100px ;
+            margin-bottom : 100px ;
+            padding-bottom : 100px ;
+          }
           @media (max-width: 600px) {
             .section {
               display: flex;
@@ -229,22 +237,23 @@ async function generatePDF() {
           <div class="header">
             <img src="https://via.placeholder.com/150" alt="Logo">
           </div>
-  
-          <div class="section">
-            <h2>${userInfo.firstName} ${userInfo.lastName} </h2>
-            <div id="userInfo">${userInfoHTML}</div>
-          </div>
-  
-          <div class="section">
-            <h2>${dealInfo.productType} | ${dealInfo.totalPrice}</h2>
-            <div id="dealInfo">${dealInfoHTML}</div>
-          </div>
-  
-          <div class="section">
-            <h2>Installment Information</h2>
-            ${installmentTableHTML}
-          </div>
-  
+  <div class = 'content'>
+  <div class="section">
+  <h2>${userInfo.firstName} ${userInfo.lastName} </h2>
+  <div id="userInfo">${userInfoHTML}</div>
+</div>
+
+<div class="section">
+  <h2>${dealInfo.productType} | ${dealInfo.totalPrice}</h2>
+  <div id="dealInfo">${dealInfoHTML}</div>
+</div>
+
+<div class="section">
+  <h2>Installment Information</h2>
+  ${installmentTableHTML}
+</div>
+  </div>
+
           <div class="closing">
             <p>All rights reserved by CMS © 2024</p>
           </div>
